@@ -1,4 +1,4 @@
-var button=document.GetElementById("counter");
+var button=document.getElementById("counter");
 
 button.OnClick=function(){
     var request=XMLHttpRequest();
