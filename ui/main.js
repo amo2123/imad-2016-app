@@ -1,8 +1,19 @@
 var button=document.GetElementById("counter");
-var counter=0;
+
 button.OnClick=function(){
-   
-  counter=counter+1;
-  var span=document.GetElementById("count");
+    var request=XMLHttpRequest();
+    request.onReadyStatechange=function(){
+      if(request.readySate==XMLHttpRequest.DONE){
+          if(request.status==200){
+              var counter=request.responseText;
+               var span=document.GetElementById("count");
   span.innerHtml=counter.toString();
+          }
+      }  
+    };
+   
+request.open("GET","http://amo2123.imad.hasura-app.io/counter",true);
+request.send(null);
+
+ 
 };
