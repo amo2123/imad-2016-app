@@ -14,12 +14,17 @@
         <div class="footer">
             This button <button id="counter">click me</button>has been clicked<span id="count"> 0 </span>times.
         </div>
-        <input type="text" id="name" placeHolder="name"></input>
-        <input type="submit" saveTo="submit" id="submit_btn"></input>
-        <ul id="namelist">
-          
-        </ul>
-         <script type="text/javascript" src="/ui/main.js">
-        </script>
+        <div class="footer">
+        This button <button id="counter" onClick="onClick()">Click Me!</button> has been clicked <a id="count">0</a>  times.
+    </div>  
+    
+    <br>
+    <hr>
+    <input type="text" id="name" placeholder="name" />
+    <input type="submit" value="submit" id="submit_btn" onClick="onClickSubmit()"/>
+    
+    <ul id="namelist">
+    </ul>
+         <script type="text/javascript" src="/ui/main.js"></script>
     </body>
 </html>
