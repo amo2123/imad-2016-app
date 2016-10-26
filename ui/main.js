@@ -1,32 +1,59 @@
-var button=document.getElementById("counter");
+//Counter Examples
+//var counter = 0;
 
-button.OnClick=function(){
-    var request=XMLHttpRequest();
-    request.onReadyStatechange=function(){
-      if(request.readySate==XMLHttpRequest.DONE){
-          if(request.status==200){
-              var counter=request.responseText;
-               var span=document.GetElementById("count");
-  span.innerHtml=counter.toString();
-          }
-      }  
+function onClick(){
+
+    //counter = counter +1;
+    //document.getElementById("count").innerHTML = counter.toString();
+    
+    
+    var request = new XMLHttpRequest();
+    
+    request.onreadystatechange = function() {
+        if(request.readyState == XMLHttpRequest.DONE){
+            if(request.status==200){
+                var counter = request.responseText;
+                document.getElementById("count").innerHTML = counter.toString();
+            }
+        }
     };
-   
-request.open("GET","http://amo2123.imad.hasura-app.io/counter",true);
-request.send(null);
+    
+    request.open("GET", "http://amo2123.imad.hasura-app.io/counter", true);
+    request.send(null);
+}
 
- 
-};
-var nameinput=document.getElementById("name");
-var name=nameinput.value;
-var submit=document.getElementById("submit_btn");
-submit.OnClick=function(){
-    var names=["name1","name2","name3"];
-    var list="";
-    for(var i=0;i=names.length;i++){
-        list+="<li>"+names[i]+"</li>";
-        
+function onClickSubmit(){
+    
+    var xhttp = new XMLHttpRequest();
+    
+    xhttp.onreadystatechange = function(){
+        if(xhttp.readyState == XMLHttpRequest.DONE){
+            if(xhttp.status==200){
+                var names = xhttp.responseText;
+                names = JSON.parse(names);
+                var list = '';
+                for(var i=0; i<names.length; i++){
+                    list += '<li>' + names[i] + '</li>';
+                }
+                var ul = document.getElementById("namelist");
+                ul.innerHTML = list;
+            }
+        }
+    };
+    
+    var name = document.getElementById("name").value;
+    
+    xhttp.open("GET", "http://amo2123.imad.hasura-app.io/submitname?name="+name,true);
+    xhttp.send(null);
+    
+    /*var names = ['name1', 'name2', 'name 3'];
+    
+    var list = '';
+    for( var i=0; i<names.length; i++){
+        list += '<li>' + names[i] + '</li>';
     }
-    var ul=document.getElementById("namelist");
-    ul.innerHtml=list;
+    
+    var ul = document.getElementById("namelist");
+    ul.innerHTML = list;
+    */
 }
