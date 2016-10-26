@@ -18,7 +18,7 @@ function onClick(){
         }
     };
     
-    request.open("GET", "http://iamnishantrai.imad.hasura-app.io/counter", true);
+    request.open("GET", "http://amo2123.imad.hasura-app.io/counter", true);
     request.send(null);
 }
 
@@ -43,7 +43,7 @@ function onClickSubmit(){
     
     var name = document.getElementById("name").value;
     
-    xhttp.open("GET", "http://iamnishantrai.imad.hasura-app.io/submitname?name="+name,true);
+    xhttp.open("GET", "http://amo2123.imad.hasura-app.io/submitname?name="+name,true);
     xhttp.send(null);
     
     /*var names = ['name1', 'name2', 'name 3'];
@@ -56,28 +56,4 @@ function onClickSubmit(){
     var ul = document.getElementById("namelist");
     ul.innerHTML = list;
     */
-}
-
-function onSubmitArticles(){
-    
-    var xhttp = new XMLHttpRequest();
-    
-    xhttp.onreadystatechange = function(){
-        if(xhttp.readyState == XMLHttpRequest.DONE){
-            if(xhttp.status==200){
-                var title = xhttp.responseText;
-               title = JSON.parse(title);
-                var list = '';
-                for(var i=0; i<title.length; i++){
-                    pool.query("INSERT INTO title VALUES('"+title[i]+"');");
-                }
-                
-            }
-        }
-    };
-    
-    var title = document.getElementById("title-articles").value;
-    
-    xhttp.open("GET", "http://iamnishantrai.imad.hasura-app.io/write-articles",true);
-    xhttp.send(null);
 }
